@@ -33,13 +33,12 @@
 
             //$('#regForm').formValidation();
             validate();
-
             $('#submit').click(function (e) {
                 //alert($('#datetimepicker1').find("input").val());
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
-                    url: "http://foin2016.azurewebsites.net/api/aadhaar",
+                    url: "https://demo5365488.mockable.io/Aadhaar",
                     contentType: 'application/json',
                     data: { uId: a_uid, mobileNumber: $("#Inputmobi").val() },
                     success: function (result) {
@@ -165,7 +164,7 @@
                         <div class="dropdown form-group">
                             <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Nationality
             <span class="caret"></span></button>-->
-                            <select id='purpose' class="selectpicker">
+                            <select id='purpose' class="selectpicker form-control col-sm-2">
                                 <option value="0">Select Nationality</option>
                                 <option value="1">Indian</option>
                                 <option value="2">Others</option>
@@ -179,7 +178,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
-                        <div class="form-group" style="display:none;" id="divMobi">
+                        <div class="form-group" style="display:none;width:100%" id="divMobi">
                             <label for="Inputmobi">Mobile Number</label>
                             <!--<span class="label label-danger">* Mobile number is mandatory as OTP will be send to the number only. Please change the number
             if it doesn't match with your recent mobile number.</span>-->
@@ -197,9 +196,9 @@
                         </div>
                         <hr width=100% align=left>
                         <h4><span class="label label-default">Select the place you want to visit</span></h4>
-                        <div class="form-group dropdown" id="divMonument">
+                        <div class="form-group dropdown" id="divMonument" style="width:100%">
                             <div class="input-group">
-                                <select id='monument' class="selectpicker">
+                                <select id='monument' class="selectpicker form-control col-sm-2">
                                     <option value="0">Select Monument</option>
                                     <option value="TAM">Taj Mahal</option>
                                     <option value="CHM">Charminar</option>
@@ -211,7 +210,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="divDate">
+                        <div class="form-group" id="divDate" style="width:100%">
                             <div class="input-group">
                                 <label for="InputDate">Select Date :</label>
                                 <div class='input-group date' id='datetimepicker1'>

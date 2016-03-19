@@ -11,13 +11,23 @@
 <script type="text/javascript" src="scripts/qrcode.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.parseparams.js"></script>
 <script type="text/javascript" src="scripts/download.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            
+
+            $('#btnPaymentSend').click(function (e) {
+                window.location = "Payment.html?moneyId=" + 1219876;
+            });
+        });
+    </script>
 <style type="text/css">
     #qrcode {
         width: 200px;
         height: 200px;
         padding: 10px;
     }
-    #dvexport {
+    .dvexport {
         width: 200px;
     }
     #export {
@@ -66,9 +76,14 @@
     </nav>
 <div id="qrcode"></div>
     <br/>
-<div id="dvexport">
+
+<div class="dvexport">
     <input id="export" type="button" value="Export" />
 </div>
+    <br/>
+    <h4>You can pay the amount right now or you can pay at the gate.</h4>
+    <div class="dvexport">
+<input id="btnPaymentSend" type="button" value="Get me to payment"/></div>
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
 	width : 200,

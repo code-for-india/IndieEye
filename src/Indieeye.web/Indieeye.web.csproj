@@ -98,6 +98,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\favicon.png" />
+    <Content Include="images\indieeye_logo.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -138,6 +140,9 @@
     <Content Include="font-awesome\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\gotaj - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gotaj - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\gotaj.pubxml" />
+    <Content Include="Reader\css\styles.scss" />
+    <Content Include="Reader\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -158,8 +163,38 @@
     <Content Include="Payment.html" />
     <Content Include="persondetail.html" />
     <Content Include="index.html" />
+    <Content Include="Reader.html" />
+    <Content Include="Reader\changelog.txt" />
+    <Content Include="Reader\css\reset.css" />
+    <Content Include="Reader\css\styles.css" />
+    <Content Include="Reader\index.html" />
+    <Content Include="Reader\index_saycheese.html" />
+    <Content Include="Reader\js\effects.js" />
+    <Content Include="Reader\js\effects_saycheese.js" />
+    <Content Include="Reader\js\jquery.min.js" />
+    <Content Include="Reader\js\photobooth.js" />
+    <Content Include="Reader\js\qr\alignpat.js" />
+    <Content Include="Reader\js\qr\bitmat.js" />
+    <Content Include="Reader\js\qr\bmparser.js" />
+    <Content Include="Reader\js\qr\datablock.js" />
+    <Content Include="Reader\js\qr\databr.js" />
+    <Content Include="Reader\js\qr\datamask.js" />
+    <Content Include="Reader\js\qr\decoder.js" />
+    <Content Include="Reader\js\qr\detector.js" />
+    <Content Include="Reader\js\qr\errorlevel.js" />
+    <Content Include="Reader\js\qr\findpat.js" />
+    <Content Include="Reader\js\qr\formatinf.js" />
+    <Content Include="Reader\js\qr\gf256.js" />
+    <Content Include="Reader\js\qr\gf256poly.js" />
+    <Content Include="Reader\js\qr\grid.js" />
+    <Content Include="Reader\js\qr\qrcode.js" />
+    <Content Include="Reader\js\qr\rsdecoder.js" />
+    <Content Include="Reader\js\qr\version.js" />
+    <Content Include="Reader\js\say-cheese.js" />
+    <Content Include="Reader\LICENSE.txt" />
     <Content Include="scripts\bootstrap-datetimepicker.js" />
     <Content Include="scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="scripts\html5-qrcode.min.js" />
     <Content Include="scripts\moment-with-locales.js" />
     <Content Include="scripts\moment-with-locales.min.js" />
     <Content Include="scripts\moment.js" />
@@ -179,9 +214,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -193,7 +226,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59406</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
