@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Registration form</title>
+    <link rel="shortcut icon" type="image/png" href="images\favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link href="bootstrap/css/portfolio-item.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="padding: 0 0 0 0">
+                    <img src="images\indieeye_logo.jpg" width="150" height="50" alt="logo">
+                </a>
+                <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <div class="container">
+        <div class="page-header">
+            <h1><small>Your personal details</small></h1>
+        </div>
+        <!-- Registration form - START -->
+        <div class="container">
+            <div class="row">
+                <form role="form">
+                    <div class="col-lg-6">
+                        <!--<div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>-->
+                        <div class="form-group">
+                            <label for="InputName">Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Name" readonly>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAge">Age</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="InputAge" name="InputAge" placeholder="Age" readonly>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputGender">Gender</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="InputGender" name="InputGender" placeholder="Gender" readonly>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputState">State</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="InputState" name="InputState" placeholder="State" readonly>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputmobi">Mobile Number</label>
+                            <span class="label label-danger">
+                                * Mobile number is mandatory as OTP will be send to the number only. Please change the number
+                                if it doesn't match with your recent mobile number.
+                            </span>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="Inputmobi" name="Inputmobi" placeholder="mobile number" required>
+
+                            </div>
+                        </div>
+                        <input type="submit" name="proceed" id="proceed" value="Proceed to pay" class="btn btn-info pull-right">
+                    </div>
+                </form>
+                <!--<div class="col-lg-5 col-md-push-1">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                        </div>
+                        <div class="alert alert-danger">
+                            <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <!-- Registration form - END -->
+    </div>
+</body>
+</html>

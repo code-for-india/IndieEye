@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Registration form</title>
+    <link rel="shortcut icon" type="image/png" href="images\favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link href="bootstrap/css/portfolio-item.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="scripts/moment.min.js"></script>
+    <script src="scripts/moment-with-locales.min.js"></script>
+    <script src="scripts/bootstrap-datetimepicker.min.js"></script>   
+    <script>
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+
+            var date = new Date();
+            date.setDate(date.getDate() - 1);
+
+            $('#datetimepicker1').datetimepicker({
+                startDate: date
+            });
+        });
+
+        
+
+        var a_uid;
+
+        $(document).ready(function () {
+
+            //$('#regForm').formValidation();
+            validate();
+
+            $('#submit').click(function (e) {
+                //alert($('#datetimepicker1').find("input").val());
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "http://foin2016.azurewebsites.net/api/aadhaar",
+                    contentType: 'application/json',
+                    data: { uId: a_uid, mobileNumber: $("#Inputmobi").val() },
+                    success: function (result) {
+                        //alert("ee" + result);
+                        window.location = "Ticket.html?code=" + a_uid + "&monument=" + $('#monument option:selected').val() + "&date=" + $('#datetimepicker1').find("input").val();
+                    },
+                    failure: function () {
+                        alert('Validation failed! Please enter a valid id number.');
+                    }
+                });
+
+            });
+
+            $('#InputAadhar, #InputPassport,#Inputmobi').change(validate);
+            $('#purpose').on('change', function () {
+                //alert(this.value);
+                if (this.value == '1') {
+                    $("#divAadhar").show();
+                    $("#divMobi").show();
+                    $("#divPassport").hide();
+                }
+                else if (this.value == '2') {
+                    $("#divAadhar").hide();
+                    $("#divMobi").hide();
+                    $("#divPassport").show();
+                }
+                else {
+                    $("#divMobi").hide();
+                    $("#divAadhar").hide();
+                    $("#divPassport").hide();
+                }
+            });
+        });
+
+        function validate() {
+            //alert($('#InputAadhar').val());
+            if (($('#InputAadhar').val().length > 0 && $('#Inputmobi').val().length > 0) ||
+                $('#InputPassport').val().length > 0) {
+
+                $("input[type=submit]").prop("disabled", false);
+                if ($('#InputAadhar').val().length > 0) { a_uid = $('#InputAadhar').val() }
+                else { a_uid = $('#InputPassport').val() }
+            }
+            else {
+                $("input[type=submit]").prop("disabled", true);
+            }
+        }
+
+        function initMap() {
+
+            var myLatLng = { lat: 27.1750, lng: 78.0419 };
+
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                center: myLatLng,
+                zoom: 8
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Taj Mahal'
+            });
+        }
+    </script>
+    <style>
+        #map {
+            width: 500px;
+            height: 400px;
+            background-color: #CCC;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="padding: 0 0 0 0">
+                    <img src="images\indieeye_logo.jpg" width="150" height="50" alt="logo">
+                </a>
+                <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Registration form</h1>
+        </div>
+        <!-- Registration form - START -->
+        <div class="container">
+            <div class="row">
+                <form role="form" id="regForm">
+                    <div class="col-lg-6">
+                        <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+
+
+                        <div class="dropdown form-group">
+                            <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Nationality
+            <span class="caret"></span></button>-->
+                            <select id='purpose' class="selectpicker">
+                                <option value="0">Select Nationality</option>
+                                <option value="1">Indian</option>
+                                <option value="2">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="display:none;" id="divAadhar">
+                            <label for="InputName">Enter AadharCard Number :</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="InputAadhar" id="InputAadhar" placeholder="Enter AadharCard Number" required
+                                       maxlength="16">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;" id="divMobi">
+                            <label for="Inputmobi">Mobile Number</label>
+                            <!--<span class="label label-danger">* Mobile number is mandatory as OTP will be send to the number only. Please change the number
+            if it doesn't match with your recent mobile number.</span>-->
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="Inputmobi" name="Inputmobi" placeholder="mobile number" required maxlength="10">
+
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;" id="divPassport">
+                            <label for="InputEmail">Enter Passport Number :</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="InputPassport" name="InputPassport" placeholder="Enter Passport Number" required maxlength="9">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                            </div>
+                        </div>
+                        <hr width=100% align=left>
+                        <h4><span class="label label-default">Select the place you want to visit</span></h4>
+                        <div class="form-group dropdown" id="divMonument">
+                            <div class="input-group">
+                                <select id='monument' class="selectpicker">
+                                    <option value="0">Select Monument</option>
+                                    <option value="TAM">Taj Mahal</option>
+                                    <option value="CHM">Charminar</option>
+                                    <option value="KOK">Konark</option>
+                                    <option value="NDK">Nandankanan</option>
+                                    <option value="GOP">Golkunda Port</option>
+                                    <option value="RPB">Rashtrapati Bhawan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divDate">
+                            <div class="input-group">
+                                <label for="InputDate">Select Date :</label>
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group col-lg-5 col-md-push-1">
+                    <div class="col-md-12">
+                        <h4><span class="label label-default">Near By Historical Places</span></h4>
+                        <div id="map"></div>
+                        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                                async defer></script>
+                        <!--<div class="alert alert-success">
+                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                </div>
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+                </div>-->
+                    </div>
+                </div>
+
+
+                
+            </div>
+        <!-- Registration form - END -->
+    </div>
+        </div>
+</body>
+</html>
